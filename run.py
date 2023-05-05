@@ -193,8 +193,8 @@ def run(input_path, output_path, model_path, model_type="large", jit=True):
     print("\n", "-"*20, "Summary", "-"*20)
     latency = all_time / all_images * 1000
     throughput = all_images / all_time
-    print("Latency:\t {:.3f} ms".format(latency))
-    print("Throughput:\t {:.2f} samples/s".format(throughput))
+    print("inference latency:\t {:.3f} ms".format(latency))
+    print("inference Throughput:\t {:.2f} samples/s".format(throughput))
     # P50
     batch_time_list.sort()
     p50_latency = batch_time_list[int(len(batch_time_list) * 0.50) - 1]
