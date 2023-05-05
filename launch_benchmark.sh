@@ -11,6 +11,9 @@ function main {
     fetch_device_info
     set_environment
 
+    if [ ! -e model-small-70d6b9c8.pt ];then
+        tar xvf /home2/pytorch-broad-models/midasnet/dataset/input.tar.gz -C ./input/
+    fi
     # requirements
     if [ "${CKPT_DIR}" == "" ];then
         set +x
