@@ -272,7 +272,12 @@ if __name__ == "__main__":
 
     # compute depth maps
     if args.precision == "bfloat16":
+        print('---- Enable AMP bfloat16')
         with torch.cpu.amp.autocast(enabled=True, dtype=torch.bfloat16):
+            run(args.input_path, args.output_path, args.model_weights, args.model_type, args.jit)
+    elif args.precision == "float16":
+        print('---- Enable AMP float16')
+        with torch.cuda.amp.autocast(enabled=True, dtype=torch.half):
             run(args.input_path, args.output_path, args.model_weights, args.model_type, args.jit)
     else:
         run(args.input_path, args.output_path, args.model_weights, args.model_type, args.jit)
