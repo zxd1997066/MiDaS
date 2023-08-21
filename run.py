@@ -277,7 +277,7 @@ if __name__ == "__main__":
             run(args.input_path, args.output_path, args.model_weights, args.model_type, args.jit)
     elif args.precision == "float16":
         print('---- Enable AMP float16')
-        with torch.cuda.amp.autocast(enabled=True, dtype=torch.half):
+        with torch.cpu.amp.autocast(enabled=True, dtype=torch.half):
             run(args.input_path, args.output_path, args.model_weights, args.model_type, args.jit)
     else:
         run(args.input_path, args.output_path, args.model_weights, args.model_type, args.jit)
