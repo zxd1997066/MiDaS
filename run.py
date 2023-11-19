@@ -70,7 +70,8 @@ def run(input_path, output_path, model_path, model_type="large", jit=True):
         print('---- Use channels last format.')
     else:
         model.to(device)
-
+    if args.compile:
+        model = torch.compile(model, backend=args.backend, options={"freezing": True})   
     if args.ipex:
         if args.precision == "bfloat16":
             model = ipex.optimize(model, dtype=torch.bfloat16, inplace=True)
@@ -263,6 +264,10 @@ if __name__ == "__main__":
     parser.add_argument('--num_iterations', default=0, type=int, metavar='N',
                         help='number of iterations to run')
     parser.add_argument('--channels_last', type=int, default=1, help='use channels last format')
+    parser.add_argument("--compile", action='store_true', default=False,
+                    help="enable torch.compile")
+    parser.add_argument("--backend", type=str, default='inductor',
+                    help="enable torch.compile backend")
 
     args = parser.parse_args()
 
