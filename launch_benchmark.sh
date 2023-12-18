@@ -22,6 +22,9 @@ function main {
         exit 1
         set -x
     fi
+    if [ "${device}" == "cuda" ];then
+        pip install opencv-python==4.8.0.74
+    fi
 
     if [ ! -d rwightman_gen-efficientnet-pytorch_master ];then
         git clone https://github.com/rwightman/gen-efficientnet-pytorch.git rwightman_gen-efficientnet-pytorch_master
