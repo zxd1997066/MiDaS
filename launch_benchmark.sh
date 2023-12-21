@@ -23,7 +23,7 @@ function main {
         set -x
     fi
     if [ "${device}" == "cuda" ];then
-        pip install opencv-python==4.8.0.74
+        pip install opencv-python==4.8.0.74 opencv-python-headless==4.8.0.74
     fi
 
     if [ ! -d rwightman_gen-efficientnet-pytorch_master ];then
